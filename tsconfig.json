@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext", "ES2019"],
+    "allowJs": true,
+    "types": ["jquery"],
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "target": "es5",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "./types.d.ts", "src/components/Jar.js", "src/components/Bubbles.tsx", "src/components/ViewCanvas.tsx", "src/components/Clover.js", "src/components/Scene.js"],
+  "exclude": ["node_modules"]
+}
