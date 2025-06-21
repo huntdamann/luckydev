@@ -105,7 +105,7 @@ Community-Driven                                        </span>
                                 </div>
                                 <div className="lg:mr-[80px] mr-[30px] lg:mt-[calc(calc(var(--mtr)*60px)+60px)] mt-[calc(calc(var(--mtr)*20px)+20px)]">
                                     <div id="item-scroll" className="lg:w-[146px] w-[97px] aspect-square border border-green-500 rounded-full drop-shadow-esg bg-blue-500 bg-opacity-60 flex flex-col items-center justify-center ">
-                                        <span>
+                                        <span className="text-white">
 Locally-Sourced                                        </span>
                                     </div>
                                     <div className="vertical-line"></div>

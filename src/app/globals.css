@@ -144,6 +144,7 @@ body {
 #scroll-content {
   transform: translate3d(0%, 0px, 0px);
   animation: slide-to-left 12s linear infinite;
+  color: white;
 
 }
 .vertical-line {
@@ -154,6 +155,7 @@ body {
 #item-scroll {
   border: 1px green solid;
   padding: 1rem;
+  color: white;
 }
 .banner-container {
   width: 100%;
