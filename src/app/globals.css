@@ -5,6 +5,7 @@
 :root {
   --background: #d1a054;
   --foreground: #171717;
+  --mtr: 0.76690707;
   margin: 0;
   padding: 0;
 }
@@ -133,6 +134,27 @@ body {
   }
 }
 
+
+#scroll-banner {
+  transform: skewX(0.1333333deg);
+  user-select: none;
+  touch-action: pan-y;
+
+}
+#scroll-content {
+  transform: translate3d(0%, 0px, 0px);
+  animation: slide-to-left 12s linear infinite;
+
+}
+.vertical-line {
+  border-left: 2px solid #333;
+  height: 200px;
+  margin-left: 75px;
+}
+#item-scroll {
+  border: 1px green solid;
+  padding: 1rem;
+}
 .banner-container {
   width: 100%;
   overflow: hidden;

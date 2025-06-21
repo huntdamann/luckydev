@@ -25,6 +25,7 @@ import Newsletter from '../slices/Newsletter'
 import OurStory from '../slices/OurStory'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
+import ScrollingBanner from '../slices/ScrollingBanner'
 
 
 import { ViewCanvas } from '../components/ViewCanvas'
@@ -420,6 +421,7 @@ export default function Home() {
            
 
           </section>
+          <ScrollingBanner />
 
 
     {/* Product Showcase */}
