@@ -141,6 +141,15 @@ body {
   touch-action: pan-y;
 
 }
+#scroll-image {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 2.4rem;
+  z-index: -10;
+  transform: rotate(-40deg);
+  
+}
+
 #scroll-content {
   transform: translate3d(0%, 0px, 0px);
   color: black;
@@ -159,7 +168,7 @@ body {
     justify-content: space-between;
     gap: 2rem;
     align-items: center;
-    animation: scroll 20s linear infinite;
+    animation: scroll 24s linear infinite;
     ul:first-child {
       background-color: yellow;
     }
@@ -181,7 +190,6 @@ body {
   height: 50px;
 }
 #descriptive-text-heading {
-  border: 1px green solid;
   padding: 1rem;
 }
 #scroll-content:hover ul {
@@ -243,7 +251,7 @@ body {
 
 /* //prevents the scrolling when the menu is open */
 #paper-window {
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   position: relative; 
   overflow-x: hidden;
@@ -267,7 +275,7 @@ body {
   box-shadow: 0 0 20px rgba(black, 0.7);
   transform-origin: center 70%;
   transition: all 0.3s ease;
-  height: 100vh;
+  height: 100dvh;
   
 }
 

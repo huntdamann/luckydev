@@ -11,7 +11,7 @@ import React, { forwardRef, useEffect, useRef } from "react";
 
 
 
-import Clover from '../../public/assets/clover-clip.png'
+import Clover from '../../public/assets/clover-clip2.png'
 import Image from "next/image";
 
 
@@ -74,7 +74,7 @@ const ScrollingBanner = () => {
                         <div className="flex flex-row overflow-hidden" draggable="false" id="scroll-banner">
                             <div  id="scroll-content" className="flex flex-row gap-3">
                               <ul>
-                                <div>
+                                <div className="relative">
                                     <li onMouseEnter={() => handleMouseEnter(0)}  className="flex flex-col items-center">
                                         <span id="descriptive-text-heading">
                                             Flavor-Focused
@@ -83,9 +83,9 @@ const ScrollingBanner = () => {
                                             Our tea puts an emphasis on flavor!
                                         </span>
                                     </li>
-                                    <div className="vertical-line"></div>
+                                    <Image id="scroll-image" src={Clover} />
                                 </div>
-                                <div>
+                                <div className="relative">
                                     <li className="flex flex-col items-center">
                                         <span id="descriptive-text-heading">
                                             Community-Driven
@@ -94,9 +94,10 @@ const ScrollingBanner = () => {
                                             Lucky cares about the community.
                                         </span>
                                     </li>
-                                    <div className="vertical-line"></div>
+                                    <Image id="scroll-image" className="" src={Clover} />
+
                                 </div>
-                                <div>
+                                <div className="relative">
                                     <li className="flex flex-col items-center">
                                         <span id="descriptive-text-heading">
                                             100% Real Tea
@@ -105,9 +106,10 @@ const ScrollingBanner = () => {
                                             Tea brewed with authentic green & black tea leaves
                                         </span>
                                     </li>
-                                    <div className="vertical-line"></div>
+                                    <Image id="scroll-image" src={Clover} />
+
                                 </div>
-                                <div><li className="flex flex-col items-center">
+                                <div className="relative"><li className="flex flex-col items-center">
                                     <span id="descriptive-text-heading">
                                         Locally-Sourced Honey
                                     </span>
@@ -115,9 +117,10 @@ const ScrollingBanner = () => {
                                         Honey used right from the backyard of Dallas, Texas
                                     </span>
                                 </li>
-                                <div className="vertical-line"></div>
+                                <Image id="scroll-image"  src={Clover} />
+
                                 </div>
-                                 <div><li className="flex flex-col items-center">
+                                 <div className="relative"><li className="flex flex-col items-center">
                                     <span id="descriptive-text-heading">
                                         % less sugar than Arizona
                                     </span>
@@ -125,7 +128,8 @@ const ScrollingBanner = () => {
                                         Sugar contained in Lucky products are less than other leading brands
                                     </span>
                                 </li>
-                                <div className="vertical-line"></div>
+                                <Image id="scroll-image" className="sugar" src={Clover} />
+
                                 </div>
                                     
                                 
@@ -135,18 +139,18 @@ const ScrollingBanner = () => {
                                  
                               </ul>
                               <ul aria-hidden="true">
-                                <div>
-                                    <li className="flex flex-col items-center">
+                                <div className="relative">
+                                    <li onMouseEnter={() => handleMouseEnter(0)}  className="flex flex-col items-center">
                                         <span id="descriptive-text-heading">
                                             Flavor-Focused
                                         </span>
-                                        <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
+                                        <span key={0} ref={addToRefs} className="text-sm min-w-[30px] border" id="descriptive-text-caption">
                                             Our tea puts an emphasis on flavor!
                                         </span>
                                     </li>
-                                    <div className="vertical-line"></div>
+                                    <Image id="scroll-image" src={Clover} />
                                 </div>
-                                <div>
+                                <div className="relative">
                                     <li className="flex flex-col items-center">
                                         <span id="descriptive-text-heading">
                                             Community-Driven
@@ -155,9 +159,10 @@ const ScrollingBanner = () => {
                                             Lucky cares about the community.
                                         </span>
                                     </li>
-                                    <div className="vertical-line"></div>
+                                    <Image id="scroll-image" className="" src={Clover} />
+
                                 </div>
-                                <div>
+                                <div className="relative">
                                     <li className="flex flex-col items-center">
                                         <span id="descriptive-text-heading">
                                             100% Real Tea
@@ -166,9 +171,10 @@ const ScrollingBanner = () => {
                                             Tea brewed with authentic green & black tea leaves
                                         </span>
                                     </li>
-                                    <div className="vertical-line"></div>
+                                    <Image id="scroll-image" src={Clover} />
+
                                 </div>
-                                <div><li className="flex flex-col items-center">
+                                <div className="relative"><li className="flex flex-col items-center">
                                     <span id="descriptive-text-heading">
                                         Locally-Sourced Honey
                                     </span>
@@ -176,9 +182,10 @@ const ScrollingBanner = () => {
                                         Honey used right from the backyard of Dallas, Texas
                                     </span>
                                 </li>
-                                <div className="vertical-line"></div>
+                                <Image id="scroll-image"  src={Clover} />
+
                                 </div>
-                                 <div><li className="flex flex-col items-center">
+                                 <div className="relative"><li className="flex flex-col items-center">
                                     <span id="descriptive-text-heading">
                                         % less sugar than Arizona
                                     </span>
@@ -186,7 +193,8 @@ const ScrollingBanner = () => {
                                         Sugar contained in Lucky products are less than other leading brands
                                     </span>
                                 </li>
-                                <div className="vertical-line"></div>
+                                <Image id="scroll-image" className="sugar" src={Clover} />
+
                                 </div>
                                     
                                 
@@ -195,7 +203,8 @@ const ScrollingBanner = () => {
                                  
                                  
                               </ul>
-                               
+                              
+                              
                                 
                             </div>
                             
