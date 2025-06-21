@@ -24,7 +24,6 @@ import SocialPanel from '../slices/SocialPanel'
 import Newsletter from '../slices/Newsletter'
 import OurStory from '../slices/OurStory'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClover } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
 
 
