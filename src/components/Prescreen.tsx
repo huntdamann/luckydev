@@ -9,7 +9,6 @@ import {RemoveScroll} from 'react-remove-scroll';
 import useMediaQuery from '../hooks/useMediaQuery'
 import Lucky from '../../public/assets/lucky-logo-demo.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons"
 import { Preload } from "@react-three/drei";
 gsap.registerPlugin(useGSAP);
 
