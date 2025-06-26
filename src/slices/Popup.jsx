@@ -34,7 +34,7 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
         <>
 
             {/* Pop up Container */}
-            <div id="popup-container" ref={refPop} className="border bg-[#51B150] gap-[3rem] ml-4 mr-4 text-center  rounded-xl absolute p-[3rem] justify-between  items-center z-[1000]   border-green-700 flex flex-row min-h-[20rem] top-[10%] left-[50%]">
+            <div id="popup-container" ref={refPop} className="border text-black bg-[#51B150] gap-[3rem] ml-4 mr-6 text-center  rounded-xl absolute p-[3rem] justify-between  items-center z-[1000]   border-green-700 flex flex-row min-h-[20rem] top-[10%] left-[50%]">
 
                 <div className="image">
                     IMAGE GOES HERE 
