@@ -38,6 +38,11 @@ export default function Home() {
   const windowRef = useRef<HTMLDivElement | null>(null);
   const paperFrontRef = useRef<HTMLDivElement | null>(null);
   const paperBackRef = useRef(null);
+
+  const [openPopUp, setOpenPopUp] = useState(false);
+  const popupRef = useRef(null);
+  const overlayRef = useRef(null);
+
   // const isDesktop = useMediaQuery('(min-width: 460px)');
 
   const [open, setOpen] = useState(false);
@@ -422,6 +427,7 @@ export default function Home() {
 
           </section>
           <ScrollingBanner />
+    <Popup refPop={popupRef} refOut={overlayRef} refNo={openPopUp} setter={setOpenPopUp}  />
 
 
     {/* Product Showcase */}

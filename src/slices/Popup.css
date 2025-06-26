@@ -5,3 +5,31 @@
     z-index: 99;
     border: solid;
 }
+
+
+.image {
+    border: 1px red solid;
+}
+
+
+@media (max-width: 500px) {
+
+  
+  .image {
+    display: none;
+    background-color: white;
+  }
+}
+
+@media (max-width: 770px) {
+
+ #popup-container {
+
+    top: 35%;
+ } 
+ 
+}
+
+#popup-container {
+    transform: translateX(-50%);
+}
