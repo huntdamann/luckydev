@@ -24,6 +24,8 @@ import SocialPanel from '../slices/SocialPanel'
 import Newsletter from '../slices/Newsletter'
 import OurStory from '../slices/OurStory'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons"
+
 import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import ScrollingBanner from '../slices/ScrollingBanner'
 
@@ -42,6 +44,10 @@ export default function Home() {
   const [openPopUp, setOpenPopUp] = useState(false);
   const popupRef = useRef(null);
   const overlayRef = useRef(null);
+  const chevronRef = useRef(null);
+  const buttonRef = useRef(null);
+
+
 
   // const isDesktop = useMediaQuery('(min-width: 460px)');
 
@@ -90,6 +96,37 @@ export default function Home() {
   useEffect(() => {
     updateTransformOrigin(); // initial calcualtion
   })
+  useEffect(() => {
+    if(openPopUp) {
+      gsap.to(popupRef.current, {zIndex:999, opacity: 1, duration: 0.6, ease: "sine.out"})
+      gsap.to(overlayRef.current, {zIndex: 800, opacity: 0.8, duration: 1, ease:"power3.out"})
+      gsap.to(buttonRef.current, { opacity: 0, y: -50, duration: 0.3, ease:"sine.out"})
+
+    } else {
+      gsap.to(popupRef.current, {
+        
+        opacity: 0,
+        duration: 0.5,
+        ease: "sine.in",
+        zIndex: -1,
+      })
+      gsap.to(overlayRef.current, {
+        opacity: 0,
+        duration: 0.5,
+        ease:'power3.in',
+        zIndex: -1,
+
+      })
+      gsap.to(buttonRef.current, {
+        opacity: 1,
+        duration: 0.3,
+        ease: "power3.in",
+        zIndex: 40,
+
+      })
+     
+    }
+  }, [openPopUp])
 
   const openStoryPage = () => {
 
@@ -263,6 +300,10 @@ export default function Home() {
     gsap.to('#leadlogo', {opacity: 1, delay: 2.5, y: 10})
     gsap.to('#secondlogo', {opacity: 1, delay: 3})
     gsap.from('#slogan', { opacity: 0, delay: 3.5, x: 100})
+    gsap.from(chevronRef.current, {opacity: 0, delay: 4})
+    gsap.to(chevronRef.current, {opacity: 1 ,delay: 4, ease: "circ.out"})
+
+
     // gsap.to('#bottle', {x:-200, delay: 8} )
     
   }, [])
@@ -426,10 +467,18 @@ export default function Home() {
            
 
           </section>
-          <ScrollingBanner />
+          {/* <ScrollingBanner /> */}
     <Popup refPop={popupRef} refOut={overlayRef} refNo={openPopUp} setter={setOpenPopUp}  />
 
 
+    <button id="button-handle" ref={buttonRef} onClick={() => setOpenPopUp(!openPopUp)} className="text-white p-2 absolute animate-bounce z-[999] left-[50%] bottom-[2rem]">
+      <div  ref={chevronRef} className="flex flex-col text-green-600 opacity-1">
+        <span>Join</span>
+       
+            <FontAwesomeIcon className=" text-green-600 " icon={faChevronUp} />
+
+      </div>
+    </button>
     {/* Product Showcase */}
     {/* <section id="product-showcase">
         <h2 className="font-main text-green-700">Honey Gold</h2>

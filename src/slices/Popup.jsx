@@ -11,6 +11,7 @@ import React, { forwardRef } from "react";
 
 
 import Lucky from '../../public/assets/lucky-logo-demo.png'
+import PhotoNews from '../../public/assets/IMG_9895.jpeg'
 import Image from "next/image";
 
 
@@ -34,12 +35,15 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
         <>
 
             {/* Pop up Container */}
-            <div id="popup-container" ref={refPop} className="border text-black bg-[#51B150] gap-[3rem]  text-center  rounded-xl absolute p-[3rem] justify-between  items-center z-[1000]   border-green-700 flex flex-row min-h-[20rem] top-[10%] left-[50%]">
+            <div id="popup-container" ref={refPop} className="border text-black bg-[#51B150] gap-[3rem]  text-center  rounded-xl absolute  p-[3rem] justify-between  items-center z-[1000]   border-green-700 flex flex-row min-h-[20rem] top-[10%] left-[50%]">
 
                 <div className="image">
-                    IMAGE GOES HERE 
+                    <Image className="w-full rounded-2xl" alt="Product-Photo" src={PhotoNews} width={300} />
                 </div>
 
+                <div onClick={() => setter(!refNo) } className="fixed top-2 right-5 cursor-pointer">
+                    exit
+                </div>
 
                 <div className="flex flex-col text-center items-center justify-center gap-3">
 
@@ -54,17 +58,16 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
 
                 </span>
 
-                <div className="border flex bg-white justify-between w-[15rem] rounded-md">
-                    <span>Email Here</span>
-                    <div>
-                        <span className="bg-green-300 rounded-tl-md rounded-bl-md">Button</span>
-                    </div>
-                </div>
+                <form className="border border-honeygold rounded-md" action="">
+                    <input className="h-full p-1" type="email" name="" placeholder="Email" required id="" />
+                    <button className="rounded-tr-md rounded-br-md p-1"><span className="">Join</span></button>
+                </form>
+                
 
                 <span>Winner will be anounced on ___</span>
 
                 
-
+                
                 <div className='triangle'></div>
 
 

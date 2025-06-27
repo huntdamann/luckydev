@@ -8,16 +8,23 @@
 
 
 .image {
-    border: 1px red solid;
+    min-width: 50%;
+    min-height: 60%;
+    border-radius: 1rem;
+    border: 1px red;
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 580px) {
 
   
   .image {
     display: none;
     background-color: white;
+  }
+
+  #popup-container {
+    min-width: 50rem;
   }
 }
 
@@ -26,8 +33,14 @@
  #popup-container {
 
     top: 35%;
+    min-width: 80%;
  } 
  
+}
+@media (max-width: 700px) {
+    #popup-container {
+        min-width: 80%;
+    }
 }
 
 #popup-container {
