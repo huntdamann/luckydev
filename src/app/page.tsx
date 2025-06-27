@@ -24,7 +24,6 @@ import SocialPanel from '../slices/SocialPanel'
 import Newsletter from '../slices/Newsletter'
 import OurStory from '../slices/OurStory'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons"
 
 import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import ScrollingBanner from '../slices/ScrollingBanner'
@@ -475,7 +474,6 @@ export default function Home() {
       <div  ref={chevronRef} className="flex flex-col text-green-600 opacity-1">
         <span>Join</span>
        
-            <FontAwesomeIcon className=" text-green-600 " icon={faChevronUp} />
 
       </div>
     </button>
