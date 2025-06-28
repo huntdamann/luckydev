@@ -20,6 +20,7 @@ import Slogan3 from '../../public/assets/slogan3.png'
 import Slogan4 from '../../public/assets/slogan4.png'
 
 import Popup from '../slices/Popup'
+import Success from '../slices/Success'
 import SocialPanel from '../slices/SocialPanel'
 import Newsletter from '../slices/Newsletter'
 import OurStory from '../slices/OurStory'
@@ -468,7 +469,7 @@ export default function Home() {
           </section>
           {/* <ScrollingBanner /> */}
     <Popup refPop={popupRef} refOut={overlayRef} refNo={openPopUp} setter={setOpenPopUp}  />
-
+    
 
     <button id="button-handle" ref={buttonRef} onClick={() => setOpenPopUp(!openPopUp)} className="text-white p-2 absolute animate-bounce z-[999] left-[45%] lg:left-[49%] bottom-[1rem]">
       <div  ref={chevronRef} className="flex flex-col text-green-600 opacity-1">

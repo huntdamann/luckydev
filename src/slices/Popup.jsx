@@ -8,7 +8,7 @@ import Lucky2 from '../../public/assets/lucky_logo_nobg.png'
 import Title from '../../public/assets/new_word.png'
 import React, { forwardRef, useState } from "react";
 
-
+import Success from '../slices/Success'
 
 import Lucky from '../../public/assets/lucky-logo-demo.png'
 import PhotoNews from '../../public/assets/IMG_9895.jpeg'
@@ -48,13 +48,18 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
         <>
 
             {/* Pop up Container */}
-            <div id="popup-container" ref={refPop} className="border-2 shadow-md text-black bg-[#51B150] gap-[3rem]  text-center  rounded-xl absolute  p-[4rem] justify-between  items-center z-[1000]   border-green-700 flex flex-row min-h-[20rem] top-[10%] left-[50%]">
+            <div id="popup-container" ref={refPop} className="border-2 shadow-md text-black bg-[#51B150] gap-[3rem]  text-center  rounded-xl absolute justify-between  items-center z-[1000]  border-green-700 flex flex-row top-[10%] left-[50%]">
+
+              <div className="h-full w-full flex flex-row">
+
+
+
 
                 <div className="image">
                     <Image className="w-full rounded-2xl" alt="Product-Photo" src={PhotoNews} width={300} />
                 </div>
 
-                <div onClick={() => setter(!refNo) } className="fixed top-1 right-5 cursor-pointer">
+                <div onClick={() => setter(!refNo) } className={`fixed ${status? 'opacity-0' : 'opacity-1'} top-1 right-5 cursor-pointer`}>
                     No, Thanks
                 </div>
 
@@ -71,11 +76,11 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
 
                 </span>
 
-                <form onSubmit={handleUserSubmit} className="border-4 flex justify-center items-center w-[23rem] border-honeygold rounded-md" action="">
-                    <input className="h-full w-full p-2" type="email" name="" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required id="" />
-                    <button type="submit" className="rounded-md bg-green-400 shadow-md p-1"><span className="">Get Lucky</span></button>
+                <form onSubmit={handleUserSubmit} className=" rounded-md flex gap-2 justify-center items-center w-[15rem]" action="">
+                    <input className="h-full w-full shadow-md rounded-md p-2" type="email" name="" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required id="" />
+                    <button type="submit" className="rounded-md bg-green-400 shadow-md h-[2rem] w-[7rem]"><span className="">Get Lucky</span></button>
 
-                    {status && <p>{status}</p>}
+                    {status && <Success set={setter} refNo={refNo} />}
                 </form>
                 
 
@@ -85,6 +90,9 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
                 
                 <div className='triangle'></div>
 
+
+
+                </div>
 
 
                 </div>
