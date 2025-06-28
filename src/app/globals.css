@@ -85,13 +85,13 @@ body {
 
   
   #button-handle {
-    bottom: 2rem;
+    bottom: 1rem;
   }
 }
 @media (max-width: 400px) {
 
   #button-handle {
-    bottom: 2rem;
+    bottom: 1rem;
   }
 }
 
@@ -137,6 +137,7 @@ body {
 
 #button-handle {
   transform: translateX(-50%);
+  bottom: 1rem;
 }
 
 #scroll-banner {
