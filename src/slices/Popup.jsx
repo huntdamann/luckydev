@@ -50,7 +50,7 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
             {/* Pop up Container */}
             <div id="popup-container" ref={refPop} className="border-2 shadow-md text-black bg-[#51B150] gap-[3rem]  text-center  rounded-xl absolute justify-between  items-center z-[1000]  border-green-700 flex flex-row top-[10%] left-[50%]">
 
-              <div className="h-full w-full flex flex-row">
+              <div className="h-full w-full flex items-center justify-center flex-row">
 
 
 
@@ -84,7 +84,7 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
                 </form>
                 
 
-                <span>Winner will be anounced on July 31st, 2025</span>
+                <span>Winner will be announced on July 31st, 2025</span>
 
                 
                 
