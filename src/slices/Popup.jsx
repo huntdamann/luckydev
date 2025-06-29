@@ -78,7 +78,7 @@ const Popup = ({ refPop, refOut, refNo, setter}) => {
 
                 <form onSubmit={handleUserSubmit} className=" rounded-md flex gap-2 justify-center items-center w-[15rem]" action="">
                     <input className="h-full w-full shadow-md rounded-md p-2" type="email" name="" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required id="" />
-                    <button type="submit" className="rounded-md bg-green-400 shadow-md h-[2rem] w-[7rem]"><span className="">Get Lucky</span></button>
+                    <button id="button-submit" type="submit" className="rounded-md bg-green-400 shadow-md h-[2rem] w-[7rem]"><span className="">Get Lucky</span></button>
 
                     {status && <Success set={setter} refNo={refNo} />}
                 </form>
