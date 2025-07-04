@@ -22,7 +22,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import ScrollingBanner from '../slices/ScrollingBanner'
-import { useScroll, useTransform, motion } from 'framer-motion'
+import { useScroll, useTransform, motion } from 'motion/react'
 
 import { ViewCanvas } from '../components/ViewCanvas'
 
