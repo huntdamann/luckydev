@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #d1a054;
+  --background: hsl(36, 7%, 71%);
   --foreground: #171717;
   --mtr: 0.76690707;
   margin: 0;
@@ -16,9 +16,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #d1a054;
-    --foreground: #d1a054;
+    --background: black;
+    --foreground: black;
   }
+}
+
+html, body {
+  height: 100%;
+  /* overflow: hidden; when menu is on turn*/
 }
 
 body {
@@ -173,13 +178,14 @@ body {
     justify-content: space-between;
     gap: 2rem;
     align-items: center;
-    animation: scroll 24s linear infinite;
+    /* animation: scroll 4s linear infinite; */
     ul:first-child {
       background-color: yellow;
     }
   }
   
   
+
 
 }
 #scroll-header {
@@ -196,6 +202,25 @@ body {
 }
 #descriptive-text-heading {
   padding: 1rem;
+  position: fixed;
+  text-align: center;
+  top: 4rem;
+  left: -2rem;
+  z-index: 3;
+  
+  
+}
+
+#clover-container {
+  position: relative;
+  border: 1px red solid;
+  overflow: hidden;
+  left: 0rem;
+
+}
+.image {
+
+  z-index: 1;
 }
 #scroll-content:hover ul {
   animation-play-state: paused;
@@ -235,6 +260,22 @@ body {
 
 }
 
+.parallax-container {
+  height: 200vh;
+  position: relative;
+}
+.parallax-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
 @keyframes slide-to-left {
   0% {
     transform: translate3d(0,0,0);
@@ -256,11 +297,9 @@ body {
 
 /* //prevents the scrolling when the menu is open */
 #paper-window {
-  height: 100dvh;
+  height: 200dvh;
   width: 100vw;
-  position: relative; 
-  overflow-x: hidden;
-  overflow-y: scroll;
+  position: relative;
   z-index: 10;
   
   
@@ -280,8 +319,9 @@ body {
   box-shadow: 0 0 20px rgba(black, 0.7);
   transform-origin: center 70%;
   transition: all 0.3s ease;
-  height: 100dvh;
-  
+  height: 200dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -297,11 +337,17 @@ body {
   background: linear-gradient(#d1a054, white)
 }
 
-/* //actual content */
-#container {
+/* Hero Container */
+#container-1 {
+
+   position: sticky;
+   top: 0;
+   height: 100dvh;
   section {
-    height: 600px;
+    height: 100%;
+  
     text-align: center;
+   
     &:first-of-type {
       padding-top: 10vh;  
       h1 { font-size: 45px; }

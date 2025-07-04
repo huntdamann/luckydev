@@ -11,7 +11,7 @@ import React, { forwardRef, useEffect, useRef } from "react";
 
 
 
-import Clover from '../../public/assets/clover-clip2.png'
+import Clover from '../../public/assets/clover-clip-art.png'
 import Image from "next/image";
 
 
@@ -66,71 +66,25 @@ const ScrollingBanner = () => {
       <section className="lg:mt-[46px] mt-[57px] w-[100vw] max-w-[100%] overflow-x-clip">
 
             <div className="lg:px-[50px] px-[60px] relative">
-                <h1 id="scroll-header" className="text-center font-juju lg:mb-[488px] mb-[47px] mt-[60px] lg:mt-[50px] text-green-500 whitespace-pre-line">Get Lucky
-                </h1>
+                
                 <div className=" lg:w-[832px] lg:h-[280px] h-[366px]"></div>
                 <div className="absoulte left-0 right-0 lg:bottom-[85px] bottom-0 lg:h-[628px] h-[366px]">
                     <div className="w-[100dvw] overflow-hidden">
-                        <div className="flex flex-row overflow-hidden" draggable="false" id="scroll-banner">
-                            <div  id="scroll-content" className="flex flex-row gap-3">
+                        <div className="flex w-full border flex-row overflow-hidden" draggable="false" id="scroll-banner">
+                            <div  id="scroll-content" className="flex  w-full flex-row gap-3">
                               <ul>
-                                <div className="relative">
-                                    <li onMouseEnter={() => handleMouseEnter(0)}  className="flex flex-col items-center">
+                                <div id="clover-container" className="relative">
+                                    <li onMouseEnter={() => handleMouseEnter(0)}  className="">
                                         <span id="descriptive-text-heading">
                                             Flavor-Focused
                                         </span>
-                                        <span key={0} ref={addToRefs} className="text-sm min-w-[30px] border" id="descriptive-text-caption">
+                                        {/* <span key={0} ref={addToRefs} className="text-sm min-w-[30px] border" id="descriptive-text-caption">
                                             Our tea puts an emphasis on flavor!
-                                        </span>
+                                        </span> */}
                                     </li>
-                                    <Image id="scroll-image" src={Clover} />
+                                    <Image className="image" src={Clover} width={40}  />
                                 </div>
-                                <div className="relative">
-                                    <li className="flex flex-col items-center">
-                                        <span id="descriptive-text-heading">
-                                            Community-Driven
-                                        </span>
-                                        <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                            Lucky cares about the community.
-                                        </span>
-                                    </li>
-                                    <Image id="scroll-image" className="" src={Clover} />
-
-                                </div>
-                                <div className="relative">
-                                    <li className="flex flex-col items-center">
-                                        <span id="descriptive-text-heading">
-                                            100% Real Tea
-                                        </span>
-                                        <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                            Tea brewed with authentic green & black tea leaves
-                                        </span>
-                                    </li>
-                                    <Image id="scroll-image" src={Clover} />
-
-                                </div>
-                                <div className="relative"><li className="flex flex-col items-center">
-                                    <span id="descriptive-text-heading">
-                                        Locally-Sourced Honey
-                                    </span>
-                                    <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                        Honey used right from the backyard of Dallas, Texas
-                                    </span>
-                                </li>
-                                <Image id="scroll-image"  src={Clover} />
-
-                                </div>
-                                 <div className="relative"><li className="flex flex-col items-center">
-                                    <span id="descriptive-text-heading">
-                                        % less sugar than Arizona
-                                    </span>
-                                    <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                        Sugar contained in Lucky products are less than other leading brands
-                                    </span>
-                                </li>
-                                <Image id="scroll-image" className="sugar" src={Clover} />
-
-                                </div>
+                                
                                     
                                 
                                  
@@ -138,71 +92,7 @@ const ScrollingBanner = () => {
                                  
                                  
                               </ul>
-                              <ul aria-hidden="true">
-                                <div className="relative">
-                                    <li onMouseEnter={() => handleMouseEnter(0)}  className="flex flex-col items-center">
-                                        <span id="descriptive-text-heading">
-                                            Flavor-Focused
-                                        </span>
-                                        <span key={0} ref={addToRefs} className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                            Our tea puts an emphasis on flavor!
-                                        </span>
-                                    </li>
-                                    <Image id="scroll-image" src={Clover} />
-                                </div>
-                                <div className="relative">
-                                    <li className="flex flex-col items-center">
-                                        <span id="descriptive-text-heading">
-                                            Community-Driven
-                                        </span>
-                                        <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                            Lucky cares about the community.
-                                        </span>
-                                    </li>
-                                    <Image id="scroll-image" className="" src={Clover} />
-
-                                </div>
-                                <div className="relative">
-                                    <li className="flex flex-col items-center">
-                                        <span id="descriptive-text-heading">
-                                            100% Real Tea
-                                        </span>
-                                        <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                            Tea brewed with authentic green & black tea leaves
-                                        </span>
-                                    </li>
-                                    <Image id="scroll-image" src={Clover} />
-
-                                </div>
-                                <div className="relative"><li className="flex flex-col items-center">
-                                    <span id="descriptive-text-heading">
-                                        Locally-Sourced Honey
-                                    </span>
-                                    <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                        Honey used right from the backyard of Dallas, Texas
-                                    </span>
-                                </li>
-                                <Image id="scroll-image"  src={Clover} />
-
-                                </div>
-                                 <div className="relative"><li className="flex flex-col items-center">
-                                    <span id="descriptive-text-heading">
-                                        % less sugar than Arizona
-                                    </span>
-                                    <span className="text-sm min-w-[30px] border" id="descriptive-text-caption">
-                                        Sugar contained in Lucky products are less than other leading brands
-                                    </span>
-                                </li>
-                                <Image id="scroll-image" className="sugar" src={Clover} />
-
-                                </div>
-                                    
-                                
-                                 
-                                 
-                                 
-                                 
-                              </ul>
+                             
                               
                               
                                 

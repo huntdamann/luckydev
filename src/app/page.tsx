@@ -1,23 +1,17 @@
 "use client";
 import Head from 'next/head'
 import React, { lazy, useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+
 import Image from "next/image";
-import localFont from "next/font/local";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import {RemoveScroll} from 'react-remove-scroll';
-import useMediaQuery from '../hooks/useMediaQuery'
+import gsap from "gsap"
+import PaperContainer from '../components/PaperContainer'
+
 import Lucky from '../../public/assets/lucky-logo-demo.png'
 import Lucky2 from '../../public/assets/lucky_logo_nobg.png'
-import Mockup from '../../public/assets/bottle-mockup.png'
-import Mockup2 from '../../public/assets/test_mockup.png'
-import Slogan from '../../public/assets/slogan.png'
+
 import Slogan2 from '../../public/assets/slogan2.png'
 
-import Slogan3 from '../../public/assets/slogan3.png'
-
-import Slogan4 from '../../public/assets/slogan4.png'
 
 import Popup from '../slices/Popup'
 import Success from '../slices/Success'
@@ -28,11 +22,51 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import ScrollingBanner from '../slices/ScrollingBanner'
-
+import { useScroll, useTransform, motion } from 'motion/react'
 
 import { ViewCanvas } from '../components/ViewCanvas'
 
 gsap.registerPlugin(useGSAP);
+
+// const scrollToTop = () => {
+//   animateScroll.scrollToTop()
+// }
+
+// const scrollTo = (os) => {
+//   scroller.scrollTo("scroll-to-element", {
+//     duration: 800,
+//     delay: 0,
+//     smooth: "easeInOutQuart",
+//     offset: os
+//   });
+// }
+
+// const scrollToWithContainer = () => {
+//   let goToContainer = new Promise((resolve, reject) => {
+//     Events.scrollEvent.register("end", () => {
+//       resolve(true);
+//       Events.scrollEvent.remove("end")
+
+//     });
+//     scroller.scrollTo("scroll-container", {
+//       duration: 800,
+//       delay: 0,
+//       smooth: "easeInOutQuart",
+//     })
+
+//   })
+
+//   goToContainer.then(() => {
+//     scroller.scrollTo("scroll-containter-second-element", {
+//       duration: 800,
+//       delay: 0,
+//       smooth: "easeInOutQuart",
+//       containerId: "scroll-container",
+//       offset: 50
+//     })
+//   })
+// }
+
 
 
 export default function Home() {
@@ -69,17 +103,18 @@ export default function Home() {
   const [scrollTop, setScrollTop] = useState(0);
 
 
+  //Hero Container ANimation 
+  const container = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"]
+  })
 
-  // useEffect(() => {
-
-  //   if (paperFrontRef.current) {
-  //     const height = paperFrontRef.current.offsetHeight;
-  //     setPageHeight(height);
-  //     console.log(height);
-  //   }
+  
+    
 
 
-  // }, [])
+
 
   // Update transform origin
   const updateTransformOrigin = () => {
@@ -307,69 +342,18 @@ export default function Home() {
     // gsap.to('#bottle', {x:-200, delay: 8} )
     
   }, [])
-  // const isDesktop = useMediaQuery('(min-width: 460px)');
-  // const [openPopUp, setOpenPopUp] = useState(false);
+  
 
-  // const popupRef = useRef(null);
-  // const overlayRef = useRef(null);
-  // const buttonRef = useRef(null);
-  // const exitRef = useRef(null);
-  // const chevronRef = useRef(null);
+  const scale = useTransform(scrollYProgress, [0,1], [1, 0.8])
+  const rotate = useTransform(scrollYProgress, [0,1], [1, -10])
 
-  // useGSAP(() => {
-  //   gsap.from('#leadlogo', {y:-320, opacity: 0, delay: 7 })
-    
-  //   gsap.to('#leadlogo', {y: 0,  opacity: 1})
-   
-  // })
-
-  // useEffect(() => {
-  //   if(openPopUp) {
-  //     gsap.to(popupRef.current, {zIndex:999, opacity: 1, duration: 0.6, ease: "sine.out"})
-  //     gsap.to(overlayRef.current, {zIndex: 800, opacity: 0.8, duration: 1, ease:"power3.out"})
-  //     gsap.to(buttonRef.current, { opacity: 0, y: -50, duration: 0.3, ease:"sine.out"})
-
-  //   } else {
-  //     gsap.to(popupRef.current, {
-        
-  //       opacity: 0,
-  //       duration: 0.5,
-  //       ease: "sine.in",
-  //       zIndex: -1,
-  //     })
-  //     gsap.to(overlayRef.current, {
-  //       opacity: 0,
-  //       duration: 0.5,
-  //       ease:'power3.in',
-  //       zIndex: -1,
-
-  //     })
-  //     gsap.to(buttonRef.current, {
-  //       opacity: 1,
-  //       duration: 0.3,
-  //       ease: "power3.in",
-  //       zIndex: 40,
-
-  //     })
-  //   }
-  // }, [openPopUp])
 
 
   return (
    <>
 
-   <Head>
-
-   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet"/>
-
-   </Head>
-
-
 <header className="text-sm" id="paper-back">
   <nav className="text-white relative">
-    <div onClick={close? openMenu: closeMenu} className="close"></div>
     <ul>
     {/* <li className="relative cursor-pointer" onClick={followUsTouch ? closeFollow : openFollow} id="followus">Socials
       
@@ -437,47 +421,98 @@ export default function Home() {
   </nav>
 </header>
 
-    {/* Hero Section */}
 
-    {/* <RemoveScroll enabled={false}> */}
-    <div id="paper-window" ref={windowRef} className={open? 'tilt' : ''}>
-      <div ref={paperFrontRef} id="paper-front" >
-        <div onClick={open ? closeMenu : openMenu} className="hamburger"><span></span></div>
-          <div id="container">
-            <section className="flex flex-col justify-center text-center gap-6 pt-[9em] items-center">
+          
+<PaperContainer>
+  <motion.div style={{scale, rotate}} id="container-1">
+    <section className="flex flex-col justify-center text-center gap-6 pt-[5rem] items-center">
 
-              <Image className="opacity-0" id="leadlogo" alt="Lucky Logo" width={300} src={Lucky}/>
-              <Image className="opacity-0" id="secondlogo" alt="Lucky Leperchaun Logo" width={300} src={Lucky2} />
+      <Image className="opacity-0" id="leadlogo" alt="Lucky Logo" width={300} src={Lucky}/>
+      <Image className="opacity-0" id="secondlogo" alt="Lucky Leperchaun Logo" width={300} src={Lucky2} />
 
-              <div className="text-3xl text-black font-[900] flex flex-col">
-              <Image id='slogan' alt="Lucky Leperchaun Logo" width={300} src={Slogan2} />
+      <div className="text-3xl text-black font-[900] flex flex-col">
+      <Image id='slogan' alt="Lucky Leperchaun Logo" width={300} src={Slogan2} />
              
 
-              {/* <span className="slogan" id="slogan">"A Bold New Brew"</span> */}
-
-              </div>
-        
-            </section>
-      
-          </div>
-          <section>
-            {openStory && (
-               <OurStory />
-            )}
-           
-
-          </section>
-          {/* <ScrollingBanner /> */}
-    <Popup refPop={popupRef} refOut={overlayRef} refNo={openPopUp} setter={setOpenPopUp}  />
-    
-
-    <button id="button-handle" ref={buttonRef} onClick={() => setOpenPopUp(!openPopUp)} className="text-white p-2 absolute animate-bounce z-[999] left-[45%] lg:left-[49%] bottom-[1rem]">
-      <div  ref={chevronRef} className="flex flex-col text-green-600 opacity-1">
-        <span>Join</span>
-       
+      {/* <span className="slogan" id="slogan">"A Bold New Brew"</span> */}
 
       </div>
-    </button>
+        
+    </section>
+
+      
+  </motion.div>
+  <Section2 scrollYProgress={scrollYProgress} />
+  <section>
+      {openStory && (
+          <OurStory />
+      )}
+           
+
+  </section>
+</PaperContainer>
+
+
+   
+    {/* <ScrollingBanner /> */}
+         
+
+    <Popup refPop={popupRef} refOut={overlayRef} refNo={openPopUp} setter={setOpenPopUp}  />
+
+      <button id="button-handle" ref={buttonRef} onClick={() => setOpenPopUp(!openPopUp)} className="text-white p-2 fixed animate-bounce z-[999] left-[45%] lg:left-[49%] bottom-[1rem]">
+        <div  ref={chevronRef} className="flex flex-col text-green-600 opacity-1">
+          <span>Join</span>
+            
+
+        </div>
+       </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {/* Product Showcase */}
     {/* <section id="product-showcase">
         <h2 className="font-main text-green-700">Honey Gold</h2>
@@ -582,7 +617,8 @@ export default function Home() {
       </footer> */}
 
 
-  </div>
+  
+
 
   
   {/* Socials */}
@@ -592,11 +628,22 @@ export default function Home() {
  
 
   
-</div>
 
 
    {/* </RemoveScroll> */}
  
    </>
   );
+}
+
+
+const Section2 = ({ scrollYProgress }) => {
+  return(
+
+    <div className='relative h-[100dvh] bg-blue-800 mt-5'>
+      <section className=' h-full w-full text-center text-white'>
+        <span>Honey Gold</span>
+      </section>
+    </div>
+  )
 }
