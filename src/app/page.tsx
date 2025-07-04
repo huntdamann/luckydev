@@ -442,7 +442,7 @@ export default function Home() {
 
       
   </motion.div>
-  <Section2 scrollYProgress={scrollYProgress} />
+  <Section2/>
   <section>
       {openStory && (
           <OurStory />
@@ -637,7 +637,7 @@ export default function Home() {
 }
 
 
-const Section2 = ({ scrollYProgress }) => {
+const Section2 = ({}) => {
   return(
 
     <div className='relative h-[100dvh] bg-blue-800 mt-5'>
