@@ -6,11 +6,12 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap"
 import PaperContainer from '../components/PaperContainer'
-
+import { useInView } from 'react-intersection-observer';
 import Lucky from '../../public/assets/lucky-logo-demo.png'
 import Lucky2 from '../../public/assets/lucky_logo_nobg.png'
 
 import Slogan2 from '../../public/assets/slogan2.png'
+import HoneyGold from '../../public/assets/Honey-Gold.png'
 
 
 import Popup from '../slices/Popup'
@@ -22,7 +23,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import ScrollingBanner from '../slices/ScrollingBanner'
-import { useScroll, useTransform, motion } from "motion/react"
+import { useScroll, useTransform, motion } from "framer-motion"
 
 import { ViewCanvas } from '../components/ViewCanvas'
 
@@ -344,9 +345,11 @@ export default function Home() {
   }, [])
   
 
-  const scale = useTransform(scrollYProgress, [0,1], [1, 0.8])
+  const scale = useTransform(scrollYProgress, [0,1], [1, 0.4])
   const rotate = useTransform(scrollYProgress, [0,1], [1, -10])
-
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  })
 
 
   return (
@@ -442,7 +445,7 @@ export default function Home() {
 
       
   </motion.div>
-  <Section2/>
+  <Section2 variable={ref}/>
   <section>
       {openStory && (
           <OurStory />
@@ -637,12 +640,20 @@ export default function Home() {
 }
 
 
-const Section2 = ({}) => {
+const Section2 = ({ variable }) => {
   return(
 
-    <div className='relative h-[100dvh] bg-blue-800 mt-5'>
-      <section className=' h-full w-full text-center text-white'>
-        <span>Honey Gold</span>
+    <div ref={variable} className='relative h-[100dvh] bg-black border-[5px] border-green-400 mt-5'>
+      <section className=' h-full w-full flex justify-evenly items-center flex-col text-center text-white'>
+        <Image src={HoneyGold} alt='Honey Gold' width={300} />
+        <div className='border p-5'>
+          <span>Animated Bottle Goes Here</span>
+        </div>
+        <button className='p-2 font-juju hover:bg-green-500 border border-honeygold rounded-md'>
+          <span>
+            Get now!
+          </span>
+        </button>
       </section>
     </div>
   )

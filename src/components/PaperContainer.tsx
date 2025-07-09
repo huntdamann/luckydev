@@ -26,6 +26,7 @@ children,
         if (!windowRef.current || !paperFrontRef.current) return;
       
         const scrollTop = windowRef.current.scrollTop;
+        console.log(scrollTop)
         const pageHeight = paperFrontRef.current.offsetHeight;
         console.log(pageHeight)
         const equation = ((scrollTop + offset) / pageHeight) * 100;
@@ -33,9 +34,9 @@ children,
         paperFrontRef.current.style.transformOrigin = `center ${equation}%`;
         };
       
-        useEffect(() => {
-          updateTransformOrigin(); // initial calcualtion
-        })
+      useEffect(() => {
+        updateTransformOrigin(); // initial calcualtion
+      }, [open])
 
 const openMenu = () => {
 
