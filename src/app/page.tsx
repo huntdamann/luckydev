@@ -1,17 +1,21 @@
 "use client";
 import Head from 'next/head'
 import React, { lazy, useEffect, useRef, useState } from "react";
-
+import dynamic from "next/dynamic";
 import Image from "next/image";
+
+import localFont from "next/font/local";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap"
-import PaperContainer from '../components/PaperContainer'
-import { useInView } from 'react-intersection-observer';
+import { motion, useInView } from 'motion/react';
+import gsap from "gsap";
+import {RemoveScroll} from 'react-remove-scroll';
+import useMediaQuery from '../hooks/useMediaQuery'
 import Lucky from '../../public/assets/lucky-logo-demo.png'
 import Lucky2 from '../../public/assets/lucky_logo_nobg.png'
-
+import Mockup from '../../public/assets/bottle-mockup.png'
+import Mockup2 from '../../public/assets/test_mockup.png'
 import Slogan2 from '../../public/assets/slogan2.png'
-import HoneyGold from '../../public/assets/Honey-Gold.png'
+
 
 
 import Popup from '../slices/Popup'
@@ -21,53 +25,12 @@ import Newsletter from '../slices/Newsletter'
 import OurStory from '../slices/OurStory'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faInstagram, faBluesky, faTiktok} from '@fortawesome/free-brands-svg-icons';
-import ScrollingBanner from '../slices/ScrollingBanner'
-import { useScroll, useTransform, motion } from "framer-motion"
+import { faInstagram, faBluesky, faTiktok, faFacebook} from '@fortawesome/free-brands-svg-icons';
+
 
 import { ViewCanvas } from '../components/ViewCanvas'
 
 gsap.registerPlugin(useGSAP);
-
-// const scrollToTop = () => {
-//   animateScroll.scrollToTop()
-// }
-
-// const scrollTo = (os) => {
-//   scroller.scrollTo("scroll-to-element", {
-//     duration: 800,
-//     delay: 0,
-//     smooth: "easeInOutQuart",
-//     offset: os
-//   });
-// }
-
-// const scrollToWithContainer = () => {
-//   let goToContainer = new Promise((resolve, reject) => {
-//     Events.scrollEvent.register("end", () => {
-//       resolve(true);
-//       Events.scrollEvent.remove("end")
-
-//     });
-//     scroller.scrollTo("scroll-container", {
-//       duration: 800,
-//       delay: 0,
-//       smooth: "easeInOutQuart",
-//     })
-
-//   })
-
-//   goToContainer.then(() => {
-//     scroller.scrollTo("scroll-containter-second-element", {
-//       duration: 800,
-//       delay: 0,
-//       smooth: "easeInOutQuart",
-//       containerId: "scroll-container",
-//       offset: 50
-//     })
-//   })
-// }
-
 
 
 export default function Home() {
@@ -104,17 +67,20 @@ export default function Home() {
   const [scrollTop, setScrollTop] = useState(0);
 
 
-  //Hero Container ANimation 
-  const container = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"]
-  })
 
-  
-    
+  // useEffect(() => {
+
+  //   if (paperFrontRef.current) {
+  //     const height = paperFrontRef.current.offsetHeight;
+  //     setPageHeight(height);
+  //     console.log(height);
+  //   }
 
 
+  // }, [])
+
+  const footerRef = useRef(null)
+  const isInView = useInView(footerRef, {amount: 1})
 
 
   // Update transform origin
@@ -122,6 +88,7 @@ export default function Home() {
     if (!windowRef.current || !paperFrontRef.current) return;
 
     const scrollTop = windowRef.current.scrollTop;
+    console.log('Scroll Progress:', scrollTop)
     const pageHeight = paperFrontRef.current.offsetHeight;
     console.log(pageHeight)
     const equation = ((scrollTop + offset) / pageHeight) * 100;
@@ -167,6 +134,12 @@ export default function Home() {
   const openStoryPage = () => {
 
     setOpenStory(prev => !prev);
+    gsap.to(chevronRef.current, {
+      opacity: 0
+    })
+    gsap.to(popupRef.current, {
+      opacity: 0
+    })
     console.log('Opening Our Story Page')
     setClose(true);
     setOpen(false)
@@ -232,7 +205,7 @@ export default function Home() {
       gsap.to('#ourstory', {opacity: 0, zIndex: -1});
       gsap.to('#followus', {opacity: 0, zIndex: -1})
       gsap.to('#delivery', {opacity: 0, zIndex: -1})
-      gsap.to('#home', {y: -170})
+      gsap.to('#home', {y: -110})
 
       gsap.to('#about-selections', {autoAlpha: 1, delay: 0.4})
 
@@ -272,6 +245,9 @@ export default function Home() {
 
     }
   })
+
+
+  // Socials button 
   useEffect (() => {
     if (followUsTouch && !aboutUsTouch && !homeTouch && !orderTouch) {
       gsap.to('#followus', {y: 0})
@@ -328,6 +304,16 @@ export default function Home() {
     }
   })
 
+  useEffect (() => {
+    if (isInView) {
+
+      gsap.to(chevronRef.current, {opacity: 0})
+    }
+    else {
+      gsap.to(chevronRef.current, {opacity: 1})
+    }
+  })
+
 
   useGSAP (() => {
 
@@ -343,20 +329,34 @@ export default function Home() {
     // gsap.to('#bottle', {x:-200, delay: 8} )
     
   }, [])
-  
+  // const isDesktop = useMediaQuery('(min-width: 460px)');
+  // const [openPopUp, setOpenPopUp] = useState(false);
 
-  const scale = useTransform(scrollYProgress, [0,1], [1, 0.4])
-  const rotate = useTransform(scrollYProgress, [0,1], [1, -10])
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  })
+  // const popupRef = useRef(null);
+  // const overlayRef = useRef(null);
+  // const buttonRef = useRef(null);
+  // const exitRef = useRef(null);
+  // const chevronRef = useRef(null);
+
 
 
   return (
    <>
 
+
+{/* Google Fonts */}
+   <Head>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com"/>
+      <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet"/>
+
+   </Head>
+
+
 <header className="text-sm" id="paper-back">
   <nav className="text-white relative">
+    <div onClick={close? openMenu: closeMenu} className="close"></div>
     <ul>
     {/* <li className="relative cursor-pointer" onClick={followUsTouch ? closeFollow : openFollow} id="followus">Socials
       
@@ -376,9 +376,15 @@ export default function Home() {
           <a className='flex items-center gap-1 w-[200px] text-[16px]' href="https://www.instagram.com/waytoolucky_/">
           <FontAwesomeIcon id='instagram-social-icon' icon={faInstagram} />
           Instagram</a>
-          <a className='flex items-center gap-1 w-[200px] text-[16px]' href="https://www.instagram.com/waytoolucky_/">
+          <a className='flex items-center gap-1 w-[200px] text-[16px]' href="https://www.tiktok.com/@luckyteadtx">
           <FontAwesomeIcon id='instagram-social-icon' icon={faTiktok} />
-          Tiktok</a>
+          Tiktok
+          </a>
+          <a className='flex items-center gap-1 w-[200px] text-[16px]' href="https://www.facebook.com/profile.php?id=61580219229816">
+          <FontAwesomeIcon id='instagram-social-icon' icon={faFacebook} />
+          Facebook
+          </a>
+          
           <a className='flex items-center gap-1 w-[200px] text-[16px]' href="https://bsky.app/profile/waytoolucky.bsky.social">
           <FontAwesomeIcon id='instagram-social-icon' icon={faBluesky} />
           Blueskies</a>
@@ -395,15 +401,15 @@ export default function Home() {
        </span>
 
       <div id="shop-selections" className={`opacity-0   fixed flex top-11 flex-col gap-5 pt-1  w-[20%]`}>
-        <span className="text-[16px] w-[200px]">Honey Gold</span>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSce9Aq-Lf26s4FfMOZkhPGPz8kzZ3gkFf8aS5yvZk1jYTdkTA/viewform?usp=header" className="text-[16px] w-[200px]">Honey Gold</a>
       </div>
     </li>
-    <li className="relative cursor-pointer"  onClick={() => {toggleDeliver()}} id="delivery">Get Lucky!
+    {/* <li className="relative cursor-pointer"  onClick={() => {toggleDeliver()}} id="delivery">Get Lucky!
     <div id="delivery-selections" className={`opacity-0   fixed  top-11 flex flex-col gap-5 pt-1  w-[30%]`}>
         <a className="text-[16px] w-[200px]" href="https://docs.google.com/forms/d/e/1FAIpQLSce9Aq-Lf26s4FfMOZkhPGPz8kzZ3gkFf8aS5yvZk1jYTdkTA/viewform?usp=header">DFW Delivery</a>
 
       </div>
-    </li>
+    </li> */}
    
    
     <li  id="home" className="relative cursor-pointer" onClick={homeTouch ? closeHome : openHome}>About Us
@@ -424,98 +430,50 @@ export default function Home() {
   </nav>
 </header>
 
+    {/* Hero Section */}
 
-          
-<PaperContainer>
-  <motion.div style={{scale, rotate}} id="container-1">
-    <section className="flex flex-col justify-center text-center gap-6 pt-[5rem] items-center">
+    {/* <RemoveScroll enabled={false}> */}
+    <div id="paper-window" ref={windowRef} className={open? 'tilt' : ''}>
+      <div ref={paperFrontRef} id="paper-front" >
+        <div onClick={open ? closeMenu : openMenu} className="hamburger"><span></span></div>
+          <div id="container">
+            <section className="flex flex-col justify-center text-center gap-6 pt-[9em] items-center">
 
-      <Image className="opacity-0" id="leadlogo" alt="Lucky Logo" width={300} src={Lucky}/>
-      <Image className="opacity-0" id="secondlogo" alt="Lucky Leperchaun Logo" width={300} src={Lucky2} />
+              <Image priority className="opacity-0" id="leadlogo" alt="Lucky Logo" width={300} src={Lucky}/>
+              <Image priority className="opacity-0" id="secondlogo" alt="Lucky Leperchaun Logo" width={300} src={Lucky2} />
 
-      <div className="text-3xl text-black font-[900] flex flex-col">
-      <Image id='slogan' alt="Lucky Leperchaun Logo" width={300} src={Slogan2} />
+              <div className="text-3xl text-black font-[900] flex flex-col">
+              <Image priority id='slogan' alt="Lucky Leperchaun Logo" width={300} src={Slogan2} />
              
 
-      {/* <span className="slogan" id="slogan">"A Bold New Brew"</span> */}
+              {/* <span className="slogan" id="slogan">"A Bold New Brew"</span> */}
 
-      </div>
+              </div>
         
-    </section>
-
+            </section>
       
-  </motion.div>
-  <Section2 variable={ref}/>
-  <section>
-      {openStory && (
-          <OurStory />
-      )}
+          </div>
+          <section>
+            {openStory && (
+               <OurStory />
+            )}
            
 
-  </section>
-</PaperContainer>
-
-
-   
-    {/* <ScrollingBanner /> */}
-         
-
+          </section>
+          <section className='border bg-[#d1a054] h-screen'>
+            <span>Section 2</span>
+          </section>
+          {/* <ScrollingBanner /> */}
     <Popup refPop={popupRef} refOut={overlayRef} refNo={openPopUp} setter={setOpenPopUp}  />
+    
 
-      <button id="button-handle" ref={buttonRef} onClick={() => setOpenPopUp(!openPopUp)} className="text-white p-2 fixed animate-bounce z-[999] left-[45%] lg:left-[49%] bottom-[1rem]">
-        <div  ref={chevronRef} className="flex flex-col text-green-600 opacity-1">
-          <span>Join</span>
-            
+    <button id="button-handle" ref={buttonRef} onClick={() => setOpenPopUp(!openPopUp)} className="text-white p-2 fixed animate-bounce z-[999] left-[45%] lg:left-[49%] bottom-[1rem]">
+      <div  ref={chevronRef} className={`flex justify-center items-center text-green-600 ${isInView ? 'opacity-0' : 'opacity-100'}`}>
 
-        </div>
-       </button>
+        <span>Join</span>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      </div>
+    </button>
     {/* Product Showcase */}
     {/* <section id="product-showcase">
         <h2 className="font-main text-green-700">Honey Gold</h2>
@@ -527,101 +485,9 @@ export default function Home() {
       </section> */}
 
       {/* <ViewCanvas /> */}
-     
-      {/* Call to action Shop  */}
-{/* 
-      <section className="flex flex-col p-[2rem] justify-evenly   bg-honeygold">
-        <div className="h-full border border-red-700 flex flex-col gap-2">
-        <div className=" relative rounded-md h-[30%]">
-          <Image className="h-full rounded-md" src={Mockup} alt="Lucky Product Mockup">
-
-          </Image>
-          <div className="absolute z-50 bottom-0 text-white">
-          <span >Shop Now</span>
-
-
-            <FontAwesomeIcon className="text-green-600" icon={faClover} />
-          </div>
-
-        </div>
-        <div className=" relative rounded-md h-[80%]">
-          <Image className="h-full w-full rounded-md" src={Mockup} alt="Lucky Product Mockup">
-
-          </Image>
-          <div className="absolute z-50 bottom-0 text-white">
-          <span >Shop Now</span>
-
-
-            <FontAwesomeIcon className="text-green-600" icon={faClover} />
-          </div>
-          
-
-        </div>
-        
-        </div>
-        
-      </section> */}
-{/* 
-      <SocialPanel realCount={100} />
-      <section className="banner-container">
-        <div className="banner">
-          <div className="banner-content">
-            <div className="flex gap-3 items-center">
-            <span>Get Lucky!</span>
-            <FontAwesomeIcon className="text-green-600" icon={faClover} />
-
-
-            </div>
-            <div>
-              <span>Try our Honey Gold Flavor</span>
-            </div>
-          </div>
-
-                                                      
-        </div>
-      </section>
-
-      <Newsletter /> */}
-
-
-
-      {/* <footer className="flex text-white gap-4 p-3 flex-row items-center justify-center">
     
-    
-    <div>
-      <h3 className="font-main">Lucky</h3>
-      <ul className="font-juju">
-        <li>About Us</li>
-        <li>Leadership</li>
 
-        <li>Accessbility</li>
-        <li>Terms of Service
-        </li>
-        <li>Privacy Policy</li>
-
-      </ul>
       </div>
-      <div>
-        <h3 className="font-main">Help</h3>
-        <ul className="font-juju">
-          <li>FAQs</li>
-          <li>Contact</li>
-
-          <li>Order Tracking</li>
-          <li>Shipping Policy</li>
-
-          <li>Return Policy</li>
-
-
-
-        </ul>
-      </div>
-    
-      </footer> */}
-
-
-  
-
 
   
   {/* Socials */}
@@ -630,31 +496,25 @@ export default function Home() {
   
  
 
+      
   
+    </div>
+    <motion.footer
+          ref={footerRef}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center text-xs text-[#d1a054] py-4"
+        >
+          © 2025 — Crafted by 
+          <a href="https://humanndesign.com" target="_blank" className="font-semibold hover:underline ml-1">
+            HUMANNDESIGN
+          </a>
+      </motion.footer>
 
 
    {/* </RemoveScroll> */}
  
    </>
   );
-}
-
-
-const Section2 = ({ variable }) => {
-  return(
-
-    <div ref={variable} className='relative h-[100dvh] bg-black border-[5px] border-green-400 mt-5'>
-      <section className=' h-full w-full flex justify-evenly items-center flex-col text-center text-white'>
-        <Image src={HoneyGold} alt='Honey Gold' width={300} />
-        <div className='border p-5'>
-          <span>Animated Bottle Goes Here</span>
-        </div>
-        <button className='p-2 font-juju hover:bg-green-500 border border-honeygold rounded-md'>
-          <span>
-            Get now!
-          </span>
-        </button>
-      </section>
-    </div>
-  )
 }
