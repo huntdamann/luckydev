@@ -28,7 +28,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faBluesky, faTiktok, faFacebook} from '@fortawesome/free-brands-svg-icons';
 
 
-import { ViewCanvas } from '../components/ViewCanvas'
 
 gsap.registerPlugin(useGSAP);
 
