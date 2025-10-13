@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 
 import localFont from "next/font/local";
-import { useGSAP } from "@gsap/react";
+import  useGSAP  from '@gsap/react'
 import { motion, useInView } from 'motion/react';
 import gsap from "gsap";
 import {RemoveScroll} from 'react-remove-scroll';
